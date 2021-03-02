@@ -1,0 +1,16 @@
+     1  module Circuit_1 (A, B, C, F1, F2);
+     2	
+     3	output      F1, F2;
+     4	input       A, B, C;
+     5	wire        T1, T2, T3, P1, P2, P3, P4;
+     6	
+     7	and         G1(T2, A, B, C);
+     8	or          G2(T1, A, B, C);
+     9	and         G3(P1, A, B);
+    10	and         G4(P2, A, C);
+    11	and         G5(P3, B, C);
+    12	or          G6(F2, P1, P2, P3);
+    13	not         G7(P4, F2);
+    14	and         G8(T3, T1, P4);
+    15	or          G9(F1, T2, T3);
+    16	endmodule
