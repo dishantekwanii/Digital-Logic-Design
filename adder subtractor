@@ -1,0 +1,22 @@
+     1	module AdderSub(
+     2		output reg  [3:0] sum_diff, 
+     3		output reg carry,
+     4		input [3:0] A,B,
+     5		input select
+     6	);
+     7	
+     8		always@(A,B,select) begin
+     9		
+    10			if(select == 0) 
+    11				begin
+    12					{carry,sum_diff} = A+B;
+    13					
+    14				end
+    15			else
+    16				begin
+    17					{carry,sum_diff} = !B;
+    18			
+    19			end
+    20		end
+    21	
+    22	endmodule 
