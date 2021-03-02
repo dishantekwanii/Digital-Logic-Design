@@ -1,0 +1,31 @@
+     1	module binary_adder (
+     2	                   output[3:0]   Sum,
+     3			   output        C_out,
+     4			   input[3:0]    A,B,
+     5	                   input         C_in
+     6	);
+     7		assign{C_out, Sum}= A + B + C_in;
+     8	endmodule
+     9	
+    10	module BCD_Adder(
+    11	        output[3:0]  Sum,
+    12		output  Carry_out,
+    13	        input[3:0]  Addend, Augend,
+    14	        input  Carry_in
+    15	);
+    16	
+    17	     wire[3:0] Z, adjust;
+    18	     wire and_3_2,  and_3_1, carry, c0, c1;
+    19	   
+    20	    binary_adder ba1(.Sum (Z), .C_out  (carry), .A(Addend), .B (Augend), .C_in(Carry_in));
+    21	   and 
+    22	       A1   (and_3_2, Z[3], Z[2]),
+    23	       A2   (and_3_1, Z[3], Z[1]);
+    24	
+    25	  or O1  (Carry_out, carry,and_3_2,and_3_1);
+    26	
+    27	 assign adjust = (Carry_out) ? (4'b0110) : (4'b0000);
+    28	 assign c1 = 1'b0;
+    29	 binary_adder ba2 (.Sum (Sum), .C_out (c0), .A (adjust), .B(Z), .C_in (c1));
+    30	 
+    31	endmodule
