@@ -1,0 +1,23 @@
+     1	module Compare (A, B, Y);
+     2	
+     3	output reg [5:0] Y;
+     4	input [0:3] A, B; 
+     5	integer i;
+     6	    	
+     7		always@ (A, B, Y) begin
+     8		for(i = 0; i <= 5 ; i = i +1 ) Y[i] = 0;
+     9	
+    10		if(A == B) Y[5] = 1;
+    11	    	
+    12		if( A != B) Y[4] = 1;
+    13	    	
+    14		if (A > B) Y[3] = 1;
+    15	   	
+    16		if (A < B) Y[2] = 1;
+    17	   	
+    18		if ( A >= B ) Y[1] = 1;
+    19	   	
+    20		if ( A <= B) Y[0] = 1;
+    21	   	
+    22		end
+    23	endmodule
